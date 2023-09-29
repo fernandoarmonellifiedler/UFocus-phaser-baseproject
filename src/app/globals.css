@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    --tw-bg-opacity: 1;
+    background-color: rgb(107 114 128 / var(--tw-bg-opacity));
+}
+
+
+.chromatic {
+    background: conic-gradient(red, yellow, green, cyan, blue, magenta, red);
+}
+
+.complement {
+    margin-top: 43px;
+}
