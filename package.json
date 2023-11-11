@@ -2,7 +2,7 @@
   "name": "phaser3-project-template",
   "version": "2.0.0",
   "description": "A Phaser 3 Project Template",
-  "main": "src/index.js",
+  "main": "src/main.js",
   "scripts": {
     "build": "webpack --config webpack/prod.js ",
     "start": "webpack-dev-server --config webpack/base.js --open"
