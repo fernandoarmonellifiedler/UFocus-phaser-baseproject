@@ -18,20 +18,27 @@ const ArmonicLevel = () => {
     const [analog, setAnalog] = React.useState(false)
 
     React.useEffect(() => {
+    localStorage.setItem('Mode', "Complementario")
     setComplement(true)
     }, [])
 
     const handleComp = () => {
+        localStorage.removeItem('Mode')
+        localStorage.setItem('Mode', "Complementario")
         setComplement(true)
         setTriad(false)
         setAnalog(false)
     }
     const handleTriad = () => {
+        localStorage.removeItem('Mode')
+        localStorage.setItem('Mode', "Triada")
         setTriad(true)
         setAnalog(false)
         setComplement(false)
     }
     const handleAnalog = () => {
+        localStorage.removeItem('Mode')
+        localStorage.setItem('Mode', "Analogo")
         setAnalog(true)
         setTriad(false)
         setComplement(false)

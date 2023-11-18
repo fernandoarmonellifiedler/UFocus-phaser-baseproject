@@ -1,12 +1,14 @@
 "use client"
 import React, { useState } from 'react';
 import '@/styles/PruebaGPT.css';
+import { useColor } from '@/context/ColorContext';
 
 const TriadaGPT: React.FC = () => {
     const [rotation, setRotation] = useState<number>(0);
-    const [color0, setColor0] = useState<string>('#ff0000');
-    const [color120, setColor120] = useState<string>('#ffff00');
-    const [color240, setColor240] = useState<string>('#0000ff');
+    // const [color120, setColor120] = useState<string>('#ffff00');
+    // const [color240, setColor240] = useState<string>('#0000ff');
+    // const [color360, setColor360] = useState<string>('#ff0000');
+    const { color120, color240, color360, updateTriadaColors } = useColor();
 
     const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const centerX = e.currentTarget.offsetWidth / 2;
@@ -17,9 +19,11 @@ const TriadaGPT: React.FC = () => {
     const angle = (Math.atan2(y, x) * (180 / Math.PI) + 360) % 360;
 
     setRotation(angle);
-    setColor0(getColorAtAngle(angle));
-    setColor120(getColorAtAngle(angle + 120));
-    setColor240(getColorAtAngle(angle + 240));
+    updateTriadaColors(
+        getColorAtAngle(angle),
+        getColorAtAngle(angle + 120),
+        getColorAtAngle(angle + 240)
+    )
     };
 
     const getColorAtAngle = (angle: number): string => {
@@ -40,7 +44,7 @@ const TriadaGPT: React.FC = () => {
             </div>
             <div className="colors flex">
                 <div className="color-box">
-                    <div className="color" style={{ backgroundColor: color0 }}></div>
+                    <div className="color" style={{ backgroundColor: color360 }}></div>
                 </div>
                 <div className="color-box">
                     <div className="color" style={{ backgroundColor: color120 }}></div>

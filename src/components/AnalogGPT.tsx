@@ -1,12 +1,14 @@
     "use client"
     import React, { useState } from 'react';
     import '@/styles/PruebaGPT.css';
+    import { useColor } from '@/context/ColorContext';
 
     const AnalogGPT: React.FC = () => {
     const [rotation, setRotation] = useState<number>(0);
-    const [color0, setColor0] = useState<string>('#ff00FF');
-    const [color30, setColor30] = useState<string>('#0000ff');
-    const [color60, setColor60] = useState<string>('#00ffff');
+    // const [color0, setColor0] = useState<string>('#ff00FF');
+    // const [color30, setColor30] = useState<string>('#0000ff');
+    // const [color60, setColor60] = useState<string>('#00ffff');
+    const { color0, color30, color60, updateAnalogColors } = useColor();
 
     const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
         const centerX = e.currentTarget.offsetWidth / 2;
@@ -17,9 +19,11 @@
         const angle = (Math.atan2(y, x) * (180 / Math.PI) + 360) % 360;
 
         setRotation(angle);
-        setColor0(getColorAtAngle(angle));
-        setColor30(getColorAtAngle(angle + 30));
-        setColor60(getColorAtAngle(angle + 60));
+        updateAnalogColors(
+            getColorAtAngle(angle),
+            getColorAtAngle(angle + 30),
+            getColorAtAngle(angle + 60)
+        )
     };
 
     const getColorAtAngle = (angle: number): string => {

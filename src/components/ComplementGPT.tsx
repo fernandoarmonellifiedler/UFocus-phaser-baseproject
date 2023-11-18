@@ -1,11 +1,13 @@
 "use client"
 import React, { useState } from 'react';
 import '@/styles/PruebaGPT.css';
+import { useColor } from '@/context/ColorContext';
 
 const ComplementGPT: React.FC = () => {
   const [rotation, setRotation] = useState<number>(0);
-  const [color0, setColor0] = useState<string>('#ff0000');
-  const [color180, setColor180] = useState<string>('#00ff00');
+  // const [color10, setColor10] = useState<string>('#EF4D4D');
+  // const [color180, setColor180] = useState<string>('#3AAD73');
+  const { color10, color180, updateComplementColors } = useColor();
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const centerX = e.currentTarget.offsetWidth / 2;
@@ -16,8 +18,10 @@ const ComplementGPT: React.FC = () => {
     const angle = (Math.atan2(y, x) * (180 / Math.PI) + 360) % 360;
 
     setRotation(angle);
-    setColor0(getColorAtAngle(angle));
-    setColor180(getColorAtAngle(angle + 180));
+    updateComplementColors(
+      getColorAtAngle(angle),
+      getColorAtAngle(angle + 180)
+    )
   };
 
   const getColorAtAngle = (angle: number): string => {
@@ -37,8 +41,8 @@ const ComplementGPT: React.FC = () => {
         </div>
       </div>
       <div className="colors flex">
-        <div className="color-box ">
-          <div className="color" style={{ backgroundColor: color0 }}></div>
+        <div className="color-box">
+          <div className="color" style={{ backgroundColor: color10 }}></div>
         </div>
         <div className="color-box">
           <div className="color" style={{ backgroundColor: color180 }}></div>
