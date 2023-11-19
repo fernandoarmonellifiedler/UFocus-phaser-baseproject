@@ -1,12 +1,14 @@
 "use client";
 import React from "react";
-import Image from "next/image";
 import { applesArray } from "@/utils/ApplesArray";
 import { useColor } from "@/context/ColorContext";
-import Tree from '@/Assets/Tree'
-import Apple from '@/Assets/Apple'
-
-// Tarea 2: Ajustar la posición de las manzanas
+import Tree from '@/Assets/Tree';
+import Apple from '@/Assets/Apple';
+import Chamaleon from "@/Assets/Chamaleon";
+import Score from "@/Assets/Score";
+import Flower from "@/Assets/Flower";
+import Snake from "@/Assets/Snake";
+import Clock from "@/Assets/Clock";
 
 const GameDisplay = () => {
     const [apples, setApples] = React.useState<{ top: string; left: string }[]>(applesArray);
@@ -39,61 +41,54 @@ const GameDisplay = () => {
     if (mode == "Analogo") {
         return (
             <div className="w-full h-full relative">
-                <Tree leaf={color0} stem={color30} />
-                {apples.map((apple, index) => (
-                    <Apple 
-                    color={color60}
-                    style={{ top: apple.top, left: apple.left }}
-                    onClick={() => collectApple(index)}
-                    />
-                ))}
-                <Image
-                    className="absolute top-2 left-2"
-                    alt="apple"
-                    src="/chamaleon.png"
-                    width={100}
-                    height={100}
-                />
+                <div className="flex w-1/5 justify-between absolute top-2 left-2">
+                    <Score skin="#000000" />
+                    <Score skin="#000000" />
+                    <Score skin="#000000" />
+                </div>
+                <Flower petals="#E5FF00" />
+                <Chamaleon skin={color30} />
+                <Snake />               
+                <Clock />     
             </div>
         )
     } else if (mode == "Triada") {
         return (
             <div className="w-full h-full relative">
-                <Tree leaf={color120} stem={color240} />
+                <div className="flex w-1/5 justify-between absolute top-2 left-2">
+                    <Score skin="#000000" />
+                    <Score skin="#000000" />
+                    <Score skin="#000000" />
+                </div>
+                <Tree leaf={color120} />
                 {apples.map((apple, index) => (
-                    <Apple 
+                    index % 2 
+                    ? <Apple 
+                    color={color240}
+                    style={{ top: apple.top, left: apple.left }}
+                    onClick={() => collectApple(index)}
+                    /> 
+                    : <Apple 
                     color={color360}
                     style={{ top: apple.top, left: apple.left }}
                     onClick={() => collectApple(index)}
-                    />
+                    /> 
                 ))}
-                <Image
-                    className="absolute top-2 left-2"
-                    alt="apple"
-                    src="/chamaleon.png"
-                    width={100}
-                    height={100}
-                />
+                <Chamaleon skin="#00E5FF" />
+                <Clock />
             </div>
         )
     } else {
         return (
             <div className="w-full h-full relative">
-                <Tree leaf={color10} stem="#a18262" />
-                {apples.map((apple, index) => (
-                    <Apple 
-                    color={color180}
-                    style={{ top: apple.top, left: apple.left }}
-                    onClick={() => collectApple(index)}
-                    />
-                ))}
-                <Image
-                    className="absolute top-2 left-2"
-                    alt="apple"
-                    src="/chamaleon.png"
-                    width={100}
-                    height={100}
-                />
+                <div className="flex w-1/5 justify-between absolute top-2 left-2">
+                    <Score skin="#000000" />
+                    <Score skin="#000000" />
+                    <Score skin="#000000" />
+                </div>
+                <Tree leaf={color180} />
+                <Chamaleon skin="#FF00E5" />
+                <Clock />
             </div>
         )
     }

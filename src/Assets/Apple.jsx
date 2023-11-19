@@ -3,8 +3,8 @@ import React from 'react'
 const Apple = ({ color, style, onClick }) => {
   return (
     <svg
-    width="20px"
-    height="20px"
+    width="10px"
+    height="10px"
     viewBox="0 0 1024 1024"
     version="1.1"
     className="w-8 h-8 rounded-full absolute z-40 icon"

@@ -45,7 +45,7 @@ const ArmonicLevel = () => {
     }
 
     return (
-        <div className="my-auto flex justify-between mx-auto">
+        <div className="my-auto flex justify-between mx-auto h-screen">
             <div className="left-side flex flex-col justify-between w-1/5 px-4 py-16">
                 <Dialogue />
                 <Manual />
