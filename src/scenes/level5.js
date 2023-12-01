@@ -59,27 +59,36 @@ export default class level5 extends Phaser.Scene {
             body.updateFromGameObject()
         }
 
+        // modal when clicking a seaShell
+        this.seaShells.children.iterate(child => {
+            child.setInteractive(); // Make each seaShell interactive
+            child.on('pointerdown', () => {
+                this.scene.pause(); // Pause the current scene
+                this.scene.launch('ModalScene'); // Launch the modal scene
+            });
+        });
+
         // create a eagle sprite
-        this.player = this.physics.add.sprite(540, 520, "eagle-stand")
-            .setScale(0.15)
-            .setInteractive()
-            .setCollideWorldBounds(true); // Enable collision with world bounds for the eagle
+        //this.player = this.physics.add.sprite(540, 520, "eagle-stand")
+        //    .setScale(0.15)
+        //    .setInteractive()
+        //    .setCollideWorldBounds(true); // Enable collision with world bounds for the eagle
 
         // Now we'll set up a function to run whenever the player collides with the world bounds
-        this.player.body.onWorldBounds = true; // Enable the onWorldBounds event for this body
+        //this.player.body.onWorldBounds = true; // Enable the onWorldBounds event for this body
 
-        this.player.body.world.on('worldbounds', function(body) {
+        //this.player.body.world.on('worldbounds', function(body) {
             // Check if the body's game object is the one you're interested in
-            if (body.gameObject === this) {
-                this.setVelocityX(0);
-            }
-        }, this.player);
+        //    if (body.gameObject === this) {
+        //        this.setVelocityX(0);
+        //    }
+        //}, this.player);
 
 
-        this.input.on('pointermove', (pointer) => {
-            let angle = Phaser.Math.Angle.Between(this.player.x, this.player.y, pointer.x, pointer.y);
-            this.physics.velocityFromAngle(Phaser.Math.RadToDeg(angle), 200, this.player.body.velocity);
-        });
+        //this.input.on('pointermove', (pointer) => {
+        //    let angle = Phaser.Math.Angle.Between(this.player.x, this.player.y, pointer.x, pointer.y);
+        //    this.physics.velocityFromAngle(Phaser.Math.RadToDeg(angle), 200, this.player.body.velocity);
+        //});
 
         // create a snake sprite
         this.snake = this.physics.add.sprite(640, 150, "snake-stand")
@@ -89,7 +98,7 @@ export default class level5 extends Phaser.Scene {
         this.seaShellMain = this.physics.add.sprite(620, 180, "seaShellMain")
             .setScale(0.5)
 
-        this.physics.add.collider(this.seaShells, this.player)
+        //this.physics.add.collider(this.seaShells, this.player)
 
     }
 
@@ -107,27 +116,27 @@ export default class level5 extends Phaser.Scene {
         })
 
         // restrict player movement to main scene
-        const leftLimit = 335;
-        const rightLimit = 690;
+        //const leftLimit = 335;
+        //const rightLimit = 690;
 
         // left and right input logic
-        if (this.cursors.left.isDown && this.player.body.x > leftLimit) {
-            this.player.setVelocityX(-200)
-        }
-        else if (this.cursors.right.isDown && this.player.body.x < rightLimit) {
-            this.player.setVelocityX(200)
-        }
-        else if (this.cursors.up.isDown && this.player.body.x > leftLimit && this.player.body.x < rightLimit) {
-            this.player.setVelocityY(-200)
-        }
-        else if (this.cursors.down.isDown && this.player.body.x > leftLimit && this.player.body.x < rightLimit) {
-            this.player.setVelocityY(200)
-        }
-        else {
+        //if (this.cursors.left.isDown && this.player.body.x > leftLimit) {
+        //    this.player.setVelocityX(-200)
+        //}
+        //else if (this.cursors.right.isDown && this.player.body.x < rightLimit) {
+        //    this.player.setVelocityX(200)
+        //}
+        //else if (this.cursors.up.isDown && this.player.body.x > leftLimit && this.player.body.x < rightLimit) {
+        //    this.player.setVelocityY(-200)
+        //}
+        //else if (this.cursors.down.isDown && this.player.body.x > leftLimit && this.player.body.x < rightLimit) {
+        //    this.player.setVelocityY(200)
+        //}
+        //else {
             // stop movement if not left or right
-            this.player.setVelocityX(0)
-            this.player.setVelocityY(0)
-        }
+        //    this.player.setVelocityX(0)
+        //    this.player.setVelocityY(0)
+        //}
 
     }
 
