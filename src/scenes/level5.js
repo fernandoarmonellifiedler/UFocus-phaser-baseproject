@@ -39,17 +39,23 @@ export default class level5 extends Phaser.Scene {
     }
 
     create() {
-        this.add.image(720, 512, "background")
+        // Obtén la referencia al "background"
+        const background = this.add.image(this.scale.width / 2, this.scale.height / 2, "background")
+            .setScale(0.8);
+
+        this.add.image(this.scale.width / 2, this.scale.height / 2, "background")
+            .setScale(0.8)
 
         // create the group
         this.seaShells = this.physics.add.staticGroup()
 
         // create 3 seaShells from the group
         let positions = [];
-        const leftBorder = 430;
-        const rightBorder = 1000;
-        const upBorder = 600;
-        const downBorder = 860;
+        // Calcula los límites en función del tamaño y la posición del "background"
+        const leftBorder = (background.x - background.displayWidth / 2) + 50;
+        const rightBorder = (background.x + background.displayWidth / 2) - 50;
+        const upBorder = (this.scale.width / 2) - 75;
+        const downBorder = (background.y + background.displayHeight / 2) - 50;
 
         let i = 0;
         while (positions.length < 3) {
@@ -95,13 +101,12 @@ export default class level5 extends Phaser.Scene {
         });
 
         // create a snake sprite
-        this.snake = this.physics.add.sprite(680, 500, "snake-stand")
-            .setScale(0.25)
+        this.snake = this.physics.add.sprite(550, 400, "snake-stand")
+            .setScale(0.20)
 
         // create a seaShell sprite
-        this.seaShellMain = this.physics.add.sprite(640, 550, "seaShellMain")
+        this.seaShellMain = this.physics.add.sprite(520, 430, "seaShellMain")
             .setScale(0.6)
-
     }
 
     update(t, d) {

@@ -5,8 +5,8 @@ import ModalScene from "./scenes/modalScene.js";
 
 export default new Phaser.Game({
     type: Phaser.AUTO,
-    width: 1440,
-    height: 1024,
+    width: 1152,
+    height: 819.2,
     scene: [Level5, ModalScene], 
     physics: {
         default: "arcade",
