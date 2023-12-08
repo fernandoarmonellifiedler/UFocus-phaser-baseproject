@@ -39,24 +39,50 @@ export default class level5 extends Phaser.Scene {
     }
 
     create() {
-        this.add.image(550, 320, "background")
-            .setScale(0.53)
+        this.add.image(720, 512, "background")
 
         // create the group
         this.seaShells = this.physics.add.staticGroup()
 
         // create 3 seaShells from the group
-        for (let i = 0; i < 3; i++) {
-            const x = Phaser.Math.Between(328, 772)
-            const y = Phaser.Math.Between(350, 400)
+        let positions = [];
+        const leftBorder = 430;
+        const rightBorder = 1000;
+        const upBorder = 600;
+        const downBorder = 860;
 
-            /** @type {Phaser.Physics.Arcade.Sprite} */
-            const seaShell = this.seaShells.create(x, y, "seaShell")
-            seaShell.scale = 0.5
+        let i = 0;
+        while (positions.length < 3) {
+            let x = Phaser.Math.Between(leftBorder, rightBorder);
+            let y = Phaser.Math.Between(upBorder, downBorder);
 
-            /** @type {Phaser.Physics.Arcade.StaticBody} */
-            const body = seaShell.body
-            body.updateFromGameObject()
+            if (!checkOverlap(x, y, positions)) {
+                positions.push({x: x, y: y});
+
+                /** @type {Phaser.Physics.Arcade.Sprite} */
+                const seaShell = this.seaShells.create(x, y, "seaShell")
+                seaShell.scale = 0.6
+
+                // Add a label to the seaShell
+                const label = this.add.text(x, y, (i+1).toString(), { fontSize: '32px', fill: '#000' });
+                this.seaShells.add(label);
+
+                /** @type {Phaser.Physics.Arcade.StaticBody} */
+                const body = seaShell.body
+                body.updateFromGameObject()
+
+                i++
+            }
+
+            function checkOverlap(x, y, positions) {
+                const tolerance = 70; // Define your own tolerance
+                for (let pos of positions) {
+                    if (Math.abs(pos.x - x) < tolerance && Math.abs(pos.y - y) < tolerance) {
+                        return true;
+                    }
+                }
+                return false;
+            }
         }
 
         // modal when clicking a seaShell
@@ -68,76 +94,17 @@ export default class level5 extends Phaser.Scene {
             });
         });
 
-        // create a eagle sprite
-        //this.player = this.physics.add.sprite(540, 520, "eagle-stand")
-        //    .setScale(0.15)
-        //    .setInteractive()
-        //    .setCollideWorldBounds(true); // Enable collision with world bounds for the eagle
-
-        // Now we'll set up a function to run whenever the player collides with the world bounds
-        //this.player.body.onWorldBounds = true; // Enable the onWorldBounds event for this body
-
-        //this.player.body.world.on('worldbounds', function(body) {
-            // Check if the body's game object is the one you're interested in
-        //    if (body.gameObject === this) {
-        //        this.setVelocityX(0);
-        //    }
-        //}, this.player);
-
-
-        //this.input.on('pointermove', (pointer) => {
-        //    let angle = Phaser.Math.Angle.Between(this.player.x, this.player.y, pointer.x, pointer.y);
-        //    this.physics.velocityFromAngle(Phaser.Math.RadToDeg(angle), 200, this.player.body.velocity);
-        //});
-
         // create a snake sprite
-        this.snake = this.physics.add.sprite(640, 150, "snake-stand")
-            .setScale(0.15)
+        this.snake = this.physics.add.sprite(680, 500, "snake-stand")
+            .setScale(0.25)
 
         // create a seaShell sprite
-        this.seaShellMain = this.physics.add.sprite(620, 180, "seaShellMain")
-            .setScale(0.5)
-
-        //this.physics.add.collider(this.seaShells, this.player)
+        this.seaShellMain = this.physics.add.sprite(640, 550, "seaShellMain")
+            .setScale(0.6)
 
     }
 
     update(t, d) {
-        this.seaShells.children.iterate(child => {
-            /** @type {Phaser.Physics.Arcade.Sprite} */
-            const seaShell = child
-
-            const scrollY = this.cameras.main.scrollY
-            if (seaShell.y >= scrollY + 700) {
-                seaShell.y = scrollY - Phaser.Math.Between(50, 100)
-                seaShell.body.updateFromGameObject()
-
-            }
-        })
-
-        // restrict player movement to main scene
-        //const leftLimit = 335;
-        //const rightLimit = 690;
-
-        // left and right input logic
-        //if (this.cursors.left.isDown && this.player.body.x > leftLimit) {
-        //    this.player.setVelocityX(-200)
-        //}
-        //else if (this.cursors.right.isDown && this.player.body.x < rightLimit) {
-        //    this.player.setVelocityX(200)
-        //}
-        //else if (this.cursors.up.isDown && this.player.body.x > leftLimit && this.player.body.x < rightLimit) {
-        //    this.player.setVelocityY(-200)
-        //}
-        //else if (this.cursors.down.isDown && this.player.body.x > leftLimit && this.player.body.x < rightLimit) {
-        //    this.player.setVelocityY(200)
-        //}
-        //else {
-            // stop movement if not left or right
-        //    this.player.setVelocityX(0)
-        //    this.player.setVelocityY(0)
-        //}
-
+        
     }
-
 }
