@@ -39,12 +39,9 @@ export default class level5 extends Phaser.Scene {
     }
 
     create() {
-        // Obtén la referencia al "background"
+         // Obtén la referencia al "background"
         const background = this.add.image(this.scale.width / 2, this.scale.height / 2, "background")
             .setScale(0.8);
-
-        this.add.image(this.scale.width / 2, this.scale.height / 2, "background")
-            .setScale(0.8)
 
         // create the group
         this.seaShells = this.physics.add.staticGroup()
