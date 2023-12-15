@@ -22,18 +22,18 @@ export default class level5 extends Phaser.Scene {
     }
 
     preload() {
-        this.load.image("background", "assets/bg_layer1.png")
+        this.load.image("background", "assets/level5/bg_layer1.png")
 
         // load the seaShell image
-        this.load.image("seaShell", "assets/seaShell1.png")
+        this.load.image("seaShell", "assets/level5/seaShell1.png")
 
         // load eagle player
-        this.load.image("eagle-stand", "assets/eagle1.png")
+        this.load.image("eagle-stand", "assets/level5/eagle1.png")
 
         // load snake 
-        this.load.image("snake-stand", "assets/snake1.png")
+        this.load.image("snake-stand", "assets/level5/snake1.png")
 
-        this.load.image("seaShellMain", "assets/seaShellMain.png")
+        this.load.image("seaShellMain", "assets/level5/seaShellMain.png")
 
         this.cursors = this.input.keyboard.createCursorKeys()
     }
