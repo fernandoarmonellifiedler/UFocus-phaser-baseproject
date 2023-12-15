@@ -40,15 +40,15 @@ export default class level5 extends Phaser.Scene {
 
     preload() {
         // load general assets
-        this.load.image("button--config", "assets/level5/button--config.png")
-        this.load.image("button--home", "assets/level5/button--home.png")
-        this.load.image("button--restart", "assets/level5/button--restart.png")
-        this.load.image("button--sound", "assets/level5/button--sound.png")
-        this.load.image("chromatic-circle", "assets/level5/chromatic-circle.png")
-        this.load.image("icon--eagle", "assets/level5/icon--eagle.png")
-        this.load.image("icon--text-ballon", "assets/level5/icon--text-ballon.png")
-        this.load.image("level-status", "assets/level5/level-status.png")
-        this.load.image("button--guide", "assets/level5/button--guide.png")
+        this.load.image("button--config", "assets/general-assets/button--config.png")
+        this.load.image("button--home", "assets/general-assets/button--home.png")
+        this.load.image("button--restart", "assets/general-assets/button--restart.png")
+        this.load.image("button--sound", "assets/general-assets/button--sound.png")
+        this.load.image("chromatic-circle", "assets/general-assets/chromatic-circle.png")
+        this.load.image("icon--eagle", "assets/general-assets/icon--eagle.png")
+        this.load.image("icon--text-ballon", "assets/general-assets/icon--text-ballon.png")
+        this.load.image("level-status", "assets/general-assets/level-status.png")
+        this.load.image("button--guide", "assets/general-assets/button--guide.png")
 
         // load level 5 assets
         this.load.image("background", "assets/level5/bg_layer1.png")
@@ -71,33 +71,33 @@ export default class level5 extends Phaser.Scene {
             .setScale(0.8);
 
         // GENERAL ASSETS
-        this.iconEagle = this.physics.add.sprite(150, 300, "icon-eagle")
-            .setScale(4)
+        this.iconEagle = this.physics.add.sprite(150, 350, "icon--eagle")
+            .setScale(.8)
             .setInteractive();
         this.iconTextBallon = this.physics.add.sprite(150, 150, "icon--text-ballon")
-            .setScale(4)
+            .setScale(.7)
             .setInteractive();
         this.buttonGuide = this.physics.add.sprite(150, 680, "button--guide")
-            .setScale(4)
+            .setScale(.8)
             .setInteractive();
 
         this.buttonHome = this.physics.add.sprite(940, 630, "button--home")
-            .setScale(2)
+            .setScale(1)
             .setInteractive();
         this.buttonSound = this.physics.add.sprite(1070, 630, "button--sound")
-            .setScale(2)
+            .setScale(1)
             .setInteractive();
-        this.buttonRestart = this.physics.add.sprite(940, 730, "button--restart")
-            .setScale(2)
+        this.buttonRestart = this.physics.add.sprite(940, 750, "button--restart")
+            .setScale(1)
             .setInteractive();
-        this.buttonConfig = this.physics.add.sprite(1070, 730, "button--config")
-            .setScale(2)
+        this.buttonConfig = this.physics.add.sprite(1070, 750, "button--config")
+            .setScale(1)
             .setInteractive();
         this.chromaticCircle = this.physics.add.sprite(1000, 150, "chromatic-circle")
-            .setScale(6)
+            .setScale(1)
             .setInteractive();
         this.levelStatus = this.physics.add.sprite(1000, 430, "level-status")
-            .setScale(2)
+            .setScale(.8)
             .setInteractive();
 
         // LEVEL5 ASSETS
