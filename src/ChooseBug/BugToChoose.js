@@ -1,4 +1,4 @@
-import { chromaticWheelColors,secondarychromaticWheelColors } from "../GlobarVars/chromaticColors";
+import { chromaticWheelColors,secondarychromaticWheelColors, ternarychromaticWheelColors } from "../GlobarVars/chromaticColors";
 import { levelSuccessDescription } from "../GlobarVars/describeInfo";
 import { levelSuccesslful } from "../Modals/CompleteLevel";
 
@@ -48,8 +48,20 @@ function handleBugToChoose (){
             bugRequired.style.backgroundColor = "grey"; // Si el array esta vacio dejar este color
             }
     }
+    function updateTernaryColors(){
+        if(ternarychromaticWheelColors.length > 0){
+            bugRequired.style.backgroundColor = ternarychromaticWheelColors[0];
+        }else if(!ternarychromaticWheelColors.includes('magenta')){
+            console.log('nivel 3 completo')
+            bugRequired.style.backgroundColor = "grey"; // Si el array esta vacio dejar este color
+        }
+         else {
+            bugRequired.style.backgroundColor = "grey"; // Si el array esta vacio dejar este color
+            }
+    }
     updateColorToSelect()
     bugRequired.style.backgroundColor=`${chromaticWheelColors[0]}`
+    //ELEGIR INSECTOS AQUI ABAJO
     allBugsMoving[0].addEventListener('click',()=>{
         let colorName= getComputedStyle(allBugsMoving[0]).getPropertyValue('--set-colorbtn') //los estilos de ese insecto
         if(colorName === chromaticWheelColors[0] && chromaticWheelColors.includes(colorName)){ // si el color del insecto coincide al de la primera posicion del array ejecuto
@@ -63,6 +75,12 @@ function handleBugToChoose (){
             secondarychromaticWheelColors.splice(secondarychromaticWheelColors.indexOf(colorName), 1);
             updateSecondaryColors()
             console.log(secondarychromaticWheelColors)
+        }else if(ternarychromaticWheelColors.length > 0 && colorName === ternarychromaticWheelColors[0]){
+            let chromaticElementThree=document.querySelector('.wheel_status_sub_level_3')
+            chromaticElementThree.style.setProperty(`--set-${colorName}colorwheel`, `${colorName}`);// aplica el color en la rueda
+            console.log(colorName,ternarychromaticWheelColors[0])
+            ternarychromaticWheelColors.splice(ternarychromaticWheelColors.indexOf(colorName), 1);
+            updateTernaryColors()
         }
         else{
             console.log('a pensar') // Ver que hacer o prevenir multiples clicks
@@ -81,6 +99,13 @@ function handleBugToChoose (){
             secondarychromaticWheelColors.splice(secondarychromaticWheelColors.indexOf(colorName), 1);
             updateSecondaryColors()
             console.log(secondarychromaticWheelColors)
+        }else if(ternarychromaticWheelColors.length > 0 && colorName === ternarychromaticWheelColors[0]){
+            let chromaticElementThree=document.querySelector('.wheel_status_sub_level_3')
+            chromaticElementThree.style.setProperty(`--set-${colorName}colorwheel`, `${colorName}`);// aplica el color en la rueda
+            console.log(colorName,ternarychromaticWheelColors[0])
+            ternarychromaticWheelColors.splice(ternarychromaticWheelColors.indexOf(colorName), 1);
+            updateTernaryColors()
+            console.log(ternarychromaticWheelColors[0])
         }else {
             console.log('pensar') // Ver que hacer o prevenir multiples clicks
         }
@@ -99,8 +124,15 @@ function handleBugToChoose (){
             secondarychromaticWheelColors.splice(secondarychromaticWheelColors.indexOf(colorName), 1);
             updateSecondaryColors()
             console.log(secondarychromaticWheelColors)
+        }else if(ternarychromaticWheelColors.length > 0 && colorName === ternarychromaticWheelColors[0]){
+            let chromaticElementThree=document.querySelector('.wheel_status_sub_level_3')
+            chromaticElementThree.style.setProperty(`--set-${colorName}colorwheel`, `${colorName}`);// aplica el color en la rueda
+            console.log(colorName,ternarychromaticWheelColors[0])
+            ternarychromaticWheelColors.splice(ternarychromaticWheelColors.indexOf(colorName), 1);
+            updateTernaryColors()
         }else{
             console.log('a pensar') // Ver que hacer o prevenir multiples clicks
+
         }
     })
 }
