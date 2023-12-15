@@ -10,9 +10,24 @@ import Flower from "@/Assets/Flower";
 import Snake from "@/Assets/Snake";
 import Clock from "@/Assets/Clock";
 
+interface position {
+    top: number
+    left: number
+}
+
 const GameDisplay = () => {
     const [apples, setApples] = React.useState<{ top: string; left: string }[]>(applesArray);
+    const [number, setNumber] = React.useState<number>(0);
+    const [position, setPosition] = React.useState<position>({top: 0, left: 0});
+    const [scores, setScores] = React.useState<boolean[]>([false, false, false])
     const mode = localStorage.getItem("Mode")
+    const colors = ["hsl(000, 100%, 50%)", "hsl(060, 100%, 50%)", "hsl(120 , 100%, 25%)", "hsl(180, 100%, 50%)", "hsl(240, 100%, 50%)", "hsl(300, 100%, 50%)"];
+
+
+    React.useEffect(() => {
+        setNumber(Math.floor(Math.random() * 6))
+        setPosition({top: Math.floor(Math.random() * 36) + 15, left: Math.floor(Math.random() * 26) + 15})
+    }, [])
     
     const { 
         // Analogo
@@ -37,17 +52,19 @@ const GameDisplay = () => {
         }, 300);
     };
 
-
     if (mode == "Analogo") {
         return (
             <div className="w-full h-full relative">
                 <div className="flex w-1/5 justify-between absolute top-2 left-2">
-                    <Score skin="#000000" />
-                    <Score skin="#000000" />
-                    <Score skin="#000000" />
+                    {scores.map(x => <Score skin={x ? "#008000" : "#000000"} />)}
                 </div>
                 <Flower petals="#E5FF00" />
-                <Chamaleon skin={color30} />
+                <Chamaleon 
+                    skin={color30} 
+                    className="" 
+                    position={{top: Math.floor(Math.random() * 36) + 15, left: Math.floor(Math.random() * 26) + 15}}
+                    onClick={() => console.log("Algo x2")}
+                    />
                 <Snake />               
                 <Clock />     
             </div>
@@ -56,9 +73,7 @@ const GameDisplay = () => {
         return (
             <div className="w-full h-full relative">
                 <div className="flex w-1/5 justify-between absolute top-2 left-2">
-                    <Score skin="#000000" />
-                    <Score skin="#000000" />
-                    <Score skin="#000000" />
+                    {scores.map(x => <Score skin={x ? "#008000" : "#000000"} />)}
                 </div>
                 <Tree leaf={color120} />
                 {apples.map((apple, index) => (
@@ -74,7 +89,12 @@ const GameDisplay = () => {
                     onClick={() => collectApple(index)}
                     /> 
                 ))}
-                <Chamaleon skin="#00E5FF" />
+                <Chamaleon 
+                    skin={colors[number]} 
+                    className="" 
+                    position={position}
+                    onClick={() => console.log("Algo")}
+                />
                 <Clock />
             </div>
         )
@@ -82,12 +102,15 @@ const GameDisplay = () => {
         return (
             <div className="w-full h-full relative">
                 <div className="flex w-1/5 justify-between absolute top-2 left-2">
-                    <Score skin="#000000" />
-                    <Score skin="#000000" />
-                    <Score skin="#000000" />
+                    {scores.map(x => <Score skin={x ? "#008000" : "#000000"} />)}
                 </div>
-                <Tree leaf={color180} />
-                <Chamaleon skin="#FF00E5" />
+                <Tree leaf={color10} />
+                <Chamaleon 
+                    skin={colors[number]} 
+                    className={Math.abs(Number(colors[number].substring(4,7)) - Number(color180.substring(4,10))) < 10 ? "" : "hidden"} 
+                    position={position}
+                    onClick={() => setScores([true, false, false])}
+                    />
                 <Clock />
             </div>
         )

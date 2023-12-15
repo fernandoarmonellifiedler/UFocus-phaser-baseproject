@@ -57,10 +57,10 @@ const ArmonicLevel = () => {
                 {complement && <ComplementGPT />}
                 {triad && <TriadaGPT />}
                 {analog && <AnalogGPT />}
-                <div className="buttons flex justify-between w-3/4 my-5">
-                    <button onClick={handleComp} className="w-6 h-6 rounded border-2 border-green-400 bg-green-100 text-green-500 flex justify-center font-bold items-center">C</button>
-                    <button onClick={handleTriad} className="w-6 h-6 rounded border-2 border-green-400 bg-green-100 text-green-500 flex justify-center font-bold items-center">T</button>
-                    <button onClick={handleAnalog} className="w-6 h-6 rounded border-2 border-green-400 bg-green-100 text-green-500 flex justify-center font-bold items-center">A</button>
+                <div className="buttons flex flex-col gap-2">
+                    <button onClick={handleComp} className="px-2 rounded border-2 border-green-400 bg-green-100 text-green-500 flex justify-center font-bold items-center">Complementarios</button>
+                    <button onClick={handleTriad} className="px-2 rounded border-2 border-green-400 bg-green-100 text-green-500 flex justify-center font-bold items-center">Triadas</button>
+                    <button onClick={handleAnalog} className="px-2 rounded border-2 border-green-400 bg-green-100 text-green-500 flex justify-center font-bold items-center">Análogos</button>
                 </div>
                 <Firefly />
                 <ProgressBar />

@@ -1,6 +1,6 @@
 import React from "react";
 
-const Chamaleon = ({skin}) => {
+const Chamaleon = ({skin, className, position, onClick}) => {
   return (
       <svg
       id="Layer_1"
@@ -8,13 +8,14 @@ const Chamaleon = ({skin}) => {
       xmlnsXlink="http://www.w3.org/1999/xlink"
       x="0px"
       y="0px"
-      width="70px"
-      height="70px"
+      width="100px"
+      height="100px"
       viewBox="0 0 512 512"
-      className="absolute"
+      onClick={onClick}
+      className={`absolute ${className}`}
       style={{
         enableBackground: "new 0 0 361.786 361.786",
-        top: '45vh', left:'40vw'
+        top: `${position.top}vh`, left: `${position.left}vw`
       }}
       xmlSpace="preserve"
     >

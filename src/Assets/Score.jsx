@@ -1,6 +1,7 @@
 import React from "react";
 
 const Score = ({skin}) => {
+
   return (
       <svg
       id="Layer_1"

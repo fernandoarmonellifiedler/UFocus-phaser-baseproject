@@ -3,8 +3,8 @@ import React from 'react'
 const Arbol = ({ leaf }) => {
   return (
     <svg
-    width="800px"
-    height="600px"
+    width="900px"
+    height="900px"
     viewBox="0 0 1024 1024"
     className="icon mx-auto"
     version="1.1"
